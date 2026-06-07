@@ -60,9 +60,9 @@ export function ImportPage({
 
   return (
     <Card className="space-y-4">
-      <h2 className="text-lg font-semibold text-slate-100">Import JSON</h2>
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Import JSON</h2>
       <div className="flex flex-wrap gap-2">
-        <label className="inline-flex cursor-pointer items-center rounded-xl border border-slate-700 px-3 py-2 text-sm text-slate-200 hover:bg-slate-800">
+        <label className="inline-flex cursor-pointer items-center rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:bg-slate-800">
           Upload .json
           <input type="file" accept="application/json,.json" className="hidden" onChange={handleFileUpload} />
         </label>
@@ -76,11 +76,11 @@ export function ImportPage({
         className="min-h-[360px] font-mono text-xs"
       />
 
-      <p className="text-sm text-slate-300">{message}</p>
+      <p className="text-sm text-slate-600 dark:text-slate-300">{message}</p>
       {error ? <p className="text-sm text-rose-300">{error}</p> : null}
 
       {hasImported ? (
-        <div className="flex flex-wrap gap-2 border-t border-slate-800 pt-3">
+        <div className="flex flex-wrap gap-2 border-t border-slate-200 dark:border-slate-800 pt-3">
           <Button variant="destructive" onClick={onResetToEmpty}>
             Reset Jadi Kosong
           </Button>

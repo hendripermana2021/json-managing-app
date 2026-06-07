@@ -54,16 +54,16 @@ export function ValidatorPage({ records, onSchemaChange }: ValidatorPageProps) {
   return (
     <div className="space-y-4">
       <Card className="space-y-3">
-        <h2 className="text-lg font-semibold text-slate-100">Validator Schema</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Validator Schema</h2>
         <Textarea value={schemaText} onChange={(e) => setSchemaText(e.target.value)} className="min-h-[220px] font-mono text-xs" />
         <Button onClick={handleValidate}>Validasi Dataset</Button>
         {error ? <p className="text-sm text-rose-300">{error}</p> : null}
       </Card>
 
       <Card>
-        <h3 className="mb-2 text-sm font-semibold text-slate-100">Hasil Validasi</h3>
-        <div className="max-h-[420px] space-y-1 overflow-auto text-sm text-slate-300">
-          {issues.length ? issues.map((issue) => <p key={issue}>{issue}</p>) : <p className="text-slate-400">Belum ada error.</p>}
+        <h3 className="mb-2 text-sm font-semibold text-slate-900 dark:text-slate-100">Hasil Validasi</h3>
+        <div className="max-h-[420px] space-y-1 overflow-auto text-sm text-slate-600 dark:text-slate-300">
+          {issues.length ? issues.map((issue) => <p key={issue}>{issue}</p>) : <p className="text-slate-500 dark:text-slate-400">Belum ada error.</p>}
         </div>
       </Card>
     </div>

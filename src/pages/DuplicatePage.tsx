@@ -75,11 +75,11 @@ export function DuplicatePage({
   return (
     <div className="space-y-4">
       <Card className="space-y-4">
-        <h2 className="text-lg font-semibold text-slate-100">Deteksi Duplikasi Pintar</h2>
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Deteksi Duplikasi Pintar</h2>
 
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
           {allFields.map((field) => (
-            <label key={field} className="flex items-center gap-2 rounded-xl border border-slate-700 px-3 py-2 text-sm text-slate-300">
+            <label key={field} className="flex items-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm text-slate-600 dark:text-slate-300">
               <input type="checkbox" checked={selectedFields.includes(field)} onChange={() => toggleField(field)} />
               {field}
             </label>
@@ -87,7 +87,7 @@ export function DuplicatePage({
         </div>
 
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
             <input
               type="checkbox"
               checked={duplicateModes.caseInsensitive}
@@ -95,7 +95,7 @@ export function DuplicatePage({
             />
             Case Insensitive
           </label>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
             <input
               type="checkbox"
               checked={duplicateModes.ignoreSpaces}
@@ -103,7 +103,7 @@ export function DuplicatePage({
             />
             Ignore Spaces
           </label>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
             <input
               type="checkbox"
               checked={duplicateModes.ignoreSpecialChars}
@@ -113,7 +113,7 @@ export function DuplicatePage({
           </label>
         </div>
 
-        <div className="flex flex-wrap gap-3 text-sm text-slate-300">
+        <div className="flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
           <Badge>Total data: {records.length}</Badge>
           <Badge>Total duplikasi: {duplicates.length}</Badge>
           <Badge>Persentase: {duplicatePercentage}%</Badge>
@@ -130,10 +130,10 @@ export function DuplicatePage({
       </Card>
 
       <Card className="space-y-3">
-        <h3 className="text-sm font-semibold text-slate-100">Daftar Duplikasi</h3>
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Daftar Duplikasi</h3>
         <div className="max-h-[420px] space-y-2 overflow-auto pr-1">
           {duplicates.map((dup) => (
-            <div key={`${dup.originalIndex}-${dup.duplicateIndex}`} className="rounded-xl border border-slate-700 p-3 text-xs text-slate-300">
+            <div key={`${dup.originalIndex}-${dup.duplicateIndex}`} className="rounded-xl border border-slate-300 dark:border-slate-700 p-3 text-xs text-slate-600 dark:text-slate-300">
               <div className="mb-2 flex flex-wrap items-center gap-2">
                 <label className="flex items-center gap-2">
                   <input
@@ -150,10 +150,10 @@ export function DuplicatePage({
                   Merge
                 </Button>
               </div>
-              <pre className="overflow-auto rounded-lg bg-slate-950 p-2">{JSON.stringify(dup.duplicate, null, 2)}</pre>
+              <pre className="overflow-auto rounded-lg bg-slate-50 dark:bg-slate-950 p-2">{JSON.stringify(dup.duplicate, null, 2)}</pre>
             </div>
           ))}
-          {!duplicates.length ? <p className="text-sm text-slate-400">Tidak ada duplikasi atau field belum dipilih.</p> : null}
+          {!duplicates.length ? <p className="text-sm text-slate-500 dark:text-slate-400">Tidak ada duplikasi atau field belum dipilih.</p> : null}
         </div>
       </Card>
     </div>

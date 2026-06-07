@@ -27,7 +27,7 @@ const Row = memo(({ index, style, data }: ListChildComponentProps<RowData>) => {
   const record = row.record;
 
   return (
-    <div style={style} className="grid items-center border-b border-slate-800 bg-slate-950/20 px-2" data-row-index={index}>
+    <div style={style} className="grid items-center border-b border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-950/20 px-2" data-row-index={index}>
       <div className="grid h-full grid-cols-[80px_repeat(var(--col-count),minmax(180px,1fr))_70px] gap-2 py-1" style={{ ["--col-count" as string]: data.columns.length }}>
         <div className="flex items-center text-xs text-slate-500">#{sourceIndex + 1}</div>
         {data.columns.map((field) => (
@@ -55,20 +55,20 @@ export function VirtualizedTable({ rows, onEditCell, onDeleteRow, sortBy, sortDi
   }, [rows]);
 
   if (!rows.length) {
-    return <div className="rounded-xl border border-dashed border-slate-700 p-6 text-center text-slate-400">Dataset masih kosong.</div>;
+    return <div className="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center text-slate-500 dark:text-slate-400">Dataset masih kosong.</div>;
   }
 
   const rowData: RowData = { rows, columns, onEditCell, onDeleteRow };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-800">
-      <div className="grid grid-cols-[80px_repeat(auto-fit,minmax(180px,1fr))_70px] gap-2 border-b border-slate-800 bg-slate-900 px-2 py-2">
+    <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+      <div className="grid grid-cols-[80px_repeat(auto-fit,minmax(180px,1fr))_70px] gap-2 border-b border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2 py-2">
         <div className="text-xs uppercase tracking-wide text-slate-500">Index</div>
         {columns.map((field) => (
           <button
             type="button"
             key={field}
-            className="flex items-center gap-1 text-left text-xs uppercase tracking-wide text-slate-300"
+            className="flex items-center gap-1 text-left text-xs uppercase tracking-wide text-slate-600 dark:text-slate-300"
             onClick={() => onSortBy(field)}
           >
             {field}

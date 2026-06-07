@@ -92,7 +92,7 @@ export function EditorPage({
           <select
             value={filterField}
             onChange={(e) => setFilterField(e.target.value)}
-            className="h-10 rounded-xl border border-slate-700 bg-slate-950 px-3 text-sm text-slate-200"
+            className="h-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 text-sm text-slate-700 dark:text-slate-200"
           >
             <option value="">Filter field (opsional)</option>
             {fields.map((field) => (

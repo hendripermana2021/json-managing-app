@@ -31,6 +31,7 @@ function App() {
   const [activeSection, setActiveSection] = useState<AppSection>("dashboard");
   const [schema, setSchema] = useState<SchemaDefinition>({});
   const [beforeImportRecords, setBeforeImportRecords] = useState<DataRecord[] | null>(null);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   const records = useJsonStore((state) => state.records);
   const selectedFields = useJsonStore((state) => state.selectedFields);
@@ -53,20 +54,23 @@ function App() {
   const undo = useJsonStore((state) => state.undo);
   const redo = useJsonStore((state) => state.redo);
   const loadFromLocalStorage = useJsonStore((state) => state.loadFromLocalStorage);
+  const saveToLocalStorage = useJsonStore((state) => state.saveToLocalStorage);
   const clearSavedSession = useJsonStore((state) => state.clearSavedSession);
 
   useAutoSave(30000);
 
   useEffect(() => {
-    const hasData = loadFromLocalStorage();
-    if (hasData) {
-      const shouldContinue = window.confirm("Data sebelumnya ditemukan. Lanjutkan?");
-      if (!shouldContinue) {
-        clearSavedSession();
-        setRecords([]);
-      }
+    loadFromLocalStorage();
+    setIsHydrated(true);
+  }, [loadFromLocalStorage]);
+
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
     }
-  }, [loadFromLocalStorage, clearSavedSession, setRecords]);
+
+    saveToLocalStorage();
+  }, [isHydrated, records, selectedFields, duplicateModes, darkMode, saveToLocalStorage]);
 
   const duplicateList = useMemo(() => {
     if (!selectedFields.length) {
@@ -90,7 +94,9 @@ function App() {
   };
 
   const handleResetToEmpty = () => {
+    clearSavedSession();
     setRecords([]);
+    setBeforeImportRecords(null);
   };
 
   const handleRestoreBeforeImport = () => {
@@ -99,6 +105,16 @@ function App() {
     }
 
     setRecords(beforeImportRecords);
+  };
+
+  const handleResetFromHeader = () => {
+    const confirmed = window.confirm("Reset semua data menjadi kosong?");
+    if (!confirmed) {
+      return;
+    }
+    clearSavedSession();
+    setRecords([]);
+    setBeforeImportRecords(null);
   };
 
   const renderSection = () => {
@@ -158,7 +174,7 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-100">
+    <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.18),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(56,189,248,0.15),transparent_35%)]" />
 
       <div className="relative flex min-h-screen">
@@ -172,9 +188,10 @@ function App() {
             onToggleDark={() => setDarkMode(!darkMode)}
             onQuickImport={() => setActiveSection("import")}
             onQuickExport={() => setActiveSection("export")}
+            onResetAll={handleResetFromHeader}
           />
 
-          <div className="flex items-center gap-2 border-b border-slate-800 px-6 py-3">
+          <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 px-6 py-3">
             <Button variant="secondary" size="sm" onClick={undo} disabled={!past.length}>
               Undo
             </Button>

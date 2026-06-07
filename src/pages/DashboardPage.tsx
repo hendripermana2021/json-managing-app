@@ -21,21 +21,21 @@ export function DashboardPage({ stats }: DashboardPageProps) {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {cards.map((card) => (
           <Card key={card.label}>
-            <p className="text-xs uppercase tracking-wide text-slate-400">{card.label}</p>
-            <p className="mt-2 text-2xl font-semibold text-slate-100">{card.value}</p>
+            <p className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">{card.label}</p>
+            <p className="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">{card.value}</p>
           </Card>
         ))}
       </div>
 
       <Card>
-        <h3 className="mb-3 text-sm font-semibold text-slate-100">Top 10 Field Kosong</h3>
+        <h3 className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Top 10 Field Kosong</h3>
         <div className="flex flex-wrap gap-2">
           {stats.emptyFieldTop10.length ? (
             stats.emptyFieldTop10.map((item) => (
               <Badge key={item.field}>{item.field}: {item.emptyCount}</Badge>
             ))
           ) : (
-            <p className="text-sm text-slate-400">Belum ada data.</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Belum ada data.</p>
           )}
         </div>
       </Card>

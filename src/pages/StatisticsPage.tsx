@@ -14,8 +14,8 @@ export function StatisticsPage({ stats }: StatisticsPageProps) {
 
   return (
     <Card className="space-y-4">
-      <h2 className="text-lg font-semibold text-slate-100">Statistik Dataset</h2>
-      <div className="grid grid-cols-2 gap-3 text-sm text-slate-300 md:grid-cols-3">
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Statistik Dataset</h2>
+      <div className="grid grid-cols-2 gap-3 text-sm text-slate-600 dark:text-slate-300 md:grid-cols-3">
         <div>Total data: {stats.totalData}</div>
         <div>Total field: {stats.totalFields}</div>
         <div>Duplikasi: {stats.duplicates}</div>
@@ -24,7 +24,7 @@ export function StatisticsPage({ stats }: StatisticsPageProps) {
         <div>Completion: {stats.completionPercentage}%</div>
       </div>
 
-      <div className="h-[420px] rounded-xl border border-slate-700 bg-slate-950 p-3">
+      <div className="h-[420px] rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-3">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />

@@ -9,6 +9,7 @@ interface HeaderBarProps {
   onToggleDark: () => void;
   onQuickImport: () => void;
   onQuickExport: () => void;
+  onResetAll: () => void;
 }
 
 export function HeaderBar({
@@ -18,9 +19,10 @@ export function HeaderBar({
   onToggleDark,
   onQuickImport,
   onQuickExport,
+  onResetAll,
 }: HeaderBarProps) {
   return (
-    <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-slate-800 bg-slate-950/95 px-6 py-3 backdrop-blur">
+    <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 px-6 py-3 backdrop-blur">
       <div className="relative w-full max-w-lg">
         <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-500" />
         <Input value={search} onChange={(e) => onSearch(e.target.value)} placeholder="Search global..." className="pl-9" />
@@ -33,6 +35,9 @@ export function HeaderBar({
       <Button variant="secondary" onClick={onQuickExport} className="gap-2">
         <Download className="h-4 w-4" />
         Export
+      </Button>
+      <Button variant="destructive" onClick={onResetAll}>
+        Reset
       </Button>
       <Button variant="ghost" onClick={onToggleDark} className="h-10 w-10 p-0">
         {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}

@@ -29,10 +29,10 @@ interface SidebarProps {
 
 export function Sidebar({ active, onChange }: SidebarProps) {
   return (
-    <aside className="w-64 shrink-0 border-r border-slate-800 bg-slate-950/80 p-4">
+    <aside className="w-64 shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/80 p-4">
       <div className="mb-6">
         <p className="text-xs uppercase tracking-[0.22em] text-cyan-300">JSON Data Manager</p>
-        <h1 className="mt-2 text-xl font-semibold text-slate-100">Large Dataset Toolkit</h1>
+        <h1 className="mt-2 text-xl font-semibold text-slate-900 dark:text-slate-100">Large Dataset Toolkit</h1>
       </div>
 
       <nav className="space-y-2">
@@ -46,8 +46,8 @@ export function Sidebar({ active, onChange }: SidebarProps) {
               className={cn(
                 "flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm transition",
                 active === item.id
-                  ? "bg-cyan-500/20 text-cyan-200"
-                  : "text-slate-300 hover:bg-slate-800 hover:text-slate-100",
+                  ? "bg-cyan-500/20 text-black-800 dark:text-white dark:text-white bold"
+                  : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100",
               )}
             >
               <Icon className="h-4 w-4" />

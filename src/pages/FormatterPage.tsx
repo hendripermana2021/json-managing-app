@@ -30,13 +30,13 @@ export function FormatterPage({ records, onApplyRecords }: FormatterPageProps) {
 
   return (
     <Card className="space-y-4">
-      <h2 className="text-lg font-semibold text-slate-100">JSON Formatter</h2>
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">JSON Formatter</h2>
 
-      <div className="flex flex-wrap gap-2 text-sm text-slate-300">
+      <div className="flex flex-wrap gap-2 text-sm text-slate-600 dark:text-slate-300">
         <label className="flex items-center gap-2">
           Indent
           <select
-            className="h-10 rounded-xl border border-slate-700 bg-slate-950 px-3"
+            className="h-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3"
             value={indentOption}
             onChange={(e) => setIndentOption(e.target.value as "2" | "4" | "tab")}
           >
@@ -59,14 +59,14 @@ export function FormatterPage({ records, onApplyRecords }: FormatterPageProps) {
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <div>
-          <p className="mb-2 text-sm text-slate-300">Preview Beautify</p>
-          <pre className="max-h-[420px] overflow-auto rounded-xl border border-slate-700 bg-slate-950 p-3 text-xs text-slate-200">
+          <p className="mb-2 text-sm text-slate-600 dark:text-slate-300">Preview Beautify</p>
+          <pre className="max-h-[420px] overflow-auto rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-3 text-xs text-slate-700 dark:text-slate-200">
             {beautifyJson(processed, indent)}
           </pre>
         </div>
         <div>
-          <p className="mb-2 text-sm text-slate-300">Preview Minify</p>
-          <pre className="max-h-[420px] overflow-auto rounded-xl border border-slate-700 bg-slate-950 p-3 text-xs text-slate-200">
+          <p className="mb-2 text-sm text-slate-600 dark:text-slate-300">Preview Minify</p>
+          <pre className="max-h-[420px] overflow-auto rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-3 text-xs text-slate-700 dark:text-slate-200">
             {minifyJson(processed)}
           </pre>
         </div>
